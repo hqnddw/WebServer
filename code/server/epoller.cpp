@@ -36,6 +36,9 @@ bool Epoller::DelFd(int fd) {
 }
 
 int Epoller::Wait(int timeoutMs) {
+    // timeoutMs == -1 一直阻塞，直到有事件产生
+    // timeoutMs ==  0 执行一次非阻塞检查
+    // timeoutMs > 0  将阻塞至多timeoutMs毫秒，直到有事件产生
     return epoll_wait(epollFd_, &events_[0], static_cast<int>(events_.size()),
                       timeoutMs);
 }
