@@ -137,6 +137,8 @@ void HttpRequest::ParsePost_() {
     }
 }
 
+//默认post提交数据格式x-www-form-urlencoded
+// title=test&sub%5B%5D=1&sub%5B%5D=2&sub%5B%5D=3
 void HttpRequest::ParseFromUrlencoded_() {
     if (body_.size() == 0) {
         return;
@@ -216,7 +218,7 @@ bool HttpRequest::UserVerify(const string& name, const string& pwd,
     while (MYSQL_ROW row = mysql_fetch_row(res)) {
         LOG_DEBUG("MYSQL ROW: %s %s", row[0], row[1]);
         string password(row[1]);
-        /* 注册行为 且 用户名未被使用*/
+        /* 登录行为*/
         if (isLogin) {
             if (pwd == password) {
                 flag = true;
