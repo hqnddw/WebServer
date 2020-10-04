@@ -18,6 +18,7 @@ public:
             assert(threadCount > 0);
             for(size_t i = 0; i < threadCount; i++) {
                 std::thread([=] {
+                    //服务器性能瓶颈，考虑使用CAS操作构建无锁队列
                     std::unique_lock<std::mutex> locker(pool_->mtx);
                     while(true) {
                         if(!pool_->tasks.empty()) {
