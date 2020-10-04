@@ -92,7 +92,7 @@ void Buffer::EnsureWriteable(size_t len) {
     assert(WritableBytes() >= len);
 }
 
-//将文件中的内容读到缓冲区中
+//将http的请求报文读到缓冲区中
 ssize_t Buffer::ReadFd(int fd, int* saveErrno) {
     char buff[65535];
     /* #include <sys/uio.h>
